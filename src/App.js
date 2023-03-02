@@ -1,12 +1,11 @@
 import React from 'react';
+import EnrollmentForm from "./components/enrollmentForm";
 
 const App = ()=>{
-    const ClickHandler = () => {
-        alert('??');
-    };
+
     return(
         <div>
-            <button type='button' onClick={ClickHandler}>Click React</button>
+            <EnrollmentForm />
         </div>
     );
 }
