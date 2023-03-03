@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
 //enrollmenentForm 가져오기
 import EnrollmentForm from "./components/enrollmentForm";
+import EnrolList from "./components/EnrolList";
+
 
 const App = ()=>{
     const [program,setProgram]=useState('UG');
-    const [prgname,setPrgname] = useState('UnderGraduate(대학교)');
+    const [prgname,setPrgname] = useState('학사과정');
     const [usSeat,setUsSeat] = useState(60);
     const [pgSeat,setPgSeat] = useState(40);
+
     const handleChange = (e) => {
         setProgram(e.target.value);
-        setPrgname(e.target.options[e.target.selectedIndex].text);
+        setPrgname(e.target.nextSibling.innerHTML);
     };
+
+    //학생 정보를 저장하는 변수 선언
+    const [stuDetails, setStuDetails]= useState({});
 
 
     //바꿔줄 수 있는 함수를 넘겨야 함
@@ -31,25 +37,39 @@ const App = ()=>{
     return(
         <div className="app">
             <div className="programs">
-                {/*그때마다 변경*/}
-                {/*<label>학사 프로그램 참가가능 인원 수 : {currentSeat()}</label>*/}
-                {/*<label>학사 프로그램 참가가능 인원 수 : {(usSeat>0)?(0,alert('더이상 신청할 수 없습니다')):usSeat}</label>*/}
-                {/*<br/>*/}
-                {/*<label>석사 프로그램 참가가능 인원 수 : {(pgSeat>0)?(0,alert('더이상 신청할 수 없습니다')):pgSeat}</label>*/}
+            {/*    /!*그때마다 변경*!/*/}
+            {/*    /!*<label>학사 프로그램 참가가능 인원 수 : {currentSeat()}</label>*!/*/}
+            {/*    /!*<label>학사 프로그램 참가가능 인원 수 : {(usSeat>0)?(0,alert('더이상 신청할 수 없습니다')):usSeat}</label>*!/*/}
+            {/*    /!*<br/>*!/*/}
+            {/*    /!*<label>석사 프로그램 참가가능 인원 수 : {(pgSeat>0)?(0,alert('더이상 신청할 수 없습니다')):pgSeat}</label>*!/*/}
 
-                <label>학사 프로그램 참가가능 인원 수 : {usSeat}</label>
-                <br/>
-                <label>석사 프로그램 참가가능 인원 수 : {pgSeat}</label>
-                <br/>
-                <label htmlFor="sel">프로그램 종류: </label>
-                {/* program의 이름으로 ug, pg가 들어감*/}
-                <select name="sel" id="sel" className="appDropDowns" onChange={handleChange} value={program}>
-                    <option value="UG">UnderGraduate(대학교)</option>
-                    <option value="PG">PostGraduate(대학원)</option>
-                </select>
-            </div>
+            {/*    <label>학사 프로그램 참가가능 인원 수 : {usSeat}</label>*/}
+            {/*    <br/>*/}
+            {/*    <label>석사 프로그램 참가가능 인원 수 : {pgSeat}</label>*/}
+            {/*    <br/>*/}
+            {/*    <label htmlFor="sel">프로그램 종류: </label>*/}
+            {/*    /!* program의 이름으로 ug, pg가 들어감*!/*/}
+            {/*    <select name="sel" id="sel" className="appDropDowns" onChange={handleChange} value={program}>*/}
+            {/*        <option value="UG">UnderGraduate(대학교)</option>*/}
+            {/*        <option value="PG">PostGraduate(대학원)</option>*/}
+            {/*    </select>*/}
+            {/*</div>*/}
+            
+            <h3>프로그램 참가 등록양식</h3>
+            <ul className="ulEnrol">
+                <li onChange={handleChange} className="parentLabels">
+                    <input type="radio" name="prg" value="UG" id="UG" defaultChecked/>
+                    <label htmlFor="UG">학사과정</label>
+                    <input type="radio" name="prg" value="PG" id="PG"/>
+                    <label htmlFor="PG">석사과정</label>
+                </li>
+                <li><label className="parentLabels">{prgname}참가 가능 인원 : {(program==='PG')?pgSeat:usSeat}</label>  </li>
+            </ul>
+            
             {/*값이 다르게 들어갈땐 삼항연산자 사용*/}
-            <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} />
+            <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} setStuDetails={setStuDetails} />
+            </div>
+            <EnrolList stuDetails={stuDetails} setStuDetails={setStuDetails} />
         </div>
     );
 }
