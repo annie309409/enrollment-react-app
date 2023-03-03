@@ -31,8 +31,20 @@
     font-family: inherit;
     font-size: 30px;
     font-style: italic;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
 }
 
+.warn{
+    color: red;
+    font-family: inherit;
+    font-size: 30px;
+    font-style: italic;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+}
 .programs{
     text-align: center;
 }

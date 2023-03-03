@@ -11,13 +11,20 @@ const EnrollmentForm = (props)=>{
 
     // state형 변수에 저장된 이름, 성을 환영메세지와함께 조합
     const [welcome,setWelcome]=useState("");
+    let [msgCol,setmsgCol] = useState("message");
 
     const HandleSubmit = (e) => {
         e.preventDefault();
         // state형 변수에 저장된 이름, 성을 환영메세지와함께 조합
         setWelcome(`welcome,${firstName} ${lastName}`);
-        // 참여가능 인원수 감소 (parameter로 함수도 받아올 수 있음)
-        props.setUpdateSeats(props.currentSeat-1);
+        // 참여가능 인원수 감소 (parameter로 함수도 받아올 수 있음)\
+        if(props.currentSeat-1<0){
+            props.setUpdateSeats(0);
+            setmsgCol('warn');
+            setWelcome('더이상 참가할 수 없어요!');
+        } else{
+            props.setUpdateSeats(props.currentSeat-1);
+        }
     };
     return(
         <div>
@@ -35,7 +42,7 @@ const EnrollmentForm = (props)=>{
                     <button type='submit'> 등록하기</button>
                 </div>
             </form>
-            <label id="studentMsg" className="message">{welcome}</label>
+            <label id="studentMsg" className={msgCol}>{welcome}</label>
         </div>
         
     );

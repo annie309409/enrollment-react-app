@@ -20,7 +20,6 @@ const App = ()=>{
     const setUpdateSeats=(modifySeat)=>{
         if(program ==='PG') setPgSeat(modifySeat);
         else setUsSeat(modifySeat);
-
     };
 
     // 조건에따라 반환하는 함수를 설정했지만 삼항연산자가 훨씬 간단함
@@ -34,6 +33,10 @@ const App = ()=>{
             <div className="programs">
                 {/*그때마다 변경*/}
                 {/*<label>학사 프로그램 참가가능 인원 수 : {currentSeat()}</label>*/}
+                {/*<label>학사 프로그램 참가가능 인원 수 : {(usSeat>0)?(0,alert('더이상 신청할 수 없습니다')):usSeat}</label>*/}
+                {/*<br/>*/}
+                {/*<label>석사 프로그램 참가가능 인원 수 : {(pgSeat>0)?(0,alert('더이상 신청할 수 없습니다')):pgSeat}</label>*/}
+
                 <label>학사 프로그램 참가가능 인원 수 : {usSeat}</label>
                 <br/>
                 <label>석사 프로그램 참가가능 인원 수 : {pgSeat}</label>
