@@ -17,7 +17,7 @@ const EnrollmentForm = (props)=>{
         // state형 변수에 저장된 이름, 성을 환영메세지와함께 조합
         setWelcome(`welcome,${firstName} ${lastName}`);
         // 참여가능 인원수 감소 (parameter로 함수도 받아올 수 있음)
-        props.setUpdateSeats(props.cSeat-1);
+        props.setUpdateSeats(props.currentSeat-1);
     };
     return(
         <div>
