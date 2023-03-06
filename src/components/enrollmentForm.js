@@ -33,7 +33,9 @@ const EnrollmentForm = (props)=>{
             let stud = {
                 key:rndKey, fname:firstName, lname:lastName, program:props.chosenProgram, email:email,
                 edit:<MdEdit className="actionIcon" />,
-                delete:<MdDelete className="actionIcon" />
+                //삭제 아이콘 클릭 시 삭제 대상학생 정보의 키를 넘김
+                delete:<MdDelete className="actionIcon"
+                onClick={()=>{props.handleItemSelection('delete',rndKey)}}/>
             };
             props.setStuDetails(stud);
         }

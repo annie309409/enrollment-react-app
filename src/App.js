@@ -10,13 +10,22 @@ const App = ()=>{
     const [usSeat,setUsSeat] = useState(60);
     const [pgSeat,setPgSeat] = useState(40);
 
+
+    //학생 정보를 저장하는 변수 선언
+    const [stuDetails, setStuDetails]= useState({});
+
+
+    // 작업종류 지정
+    const [action,setAction] = useState();
+    // 등록 정보 키값 저장
+    const [selItemKey,setSelItemKey] = useState();
+
+
     const handleChange = (e) => {
         setProgram(e.target.value);
         setPrgname(e.target.nextSibling.innerHTML);
     };
 
-    //학생 정보를 저장하는 변수 선언
-    const [stuDetails, setStuDetails]= useState({});
 
 
     //바꿔줄 수 있는 함수를 넘겨야 함
@@ -33,6 +42,13 @@ const App = ()=>{
     //     if(program =='PG') return pgSeat;
     //     else return  usSeat;
     // }
+
+
+    // 작업종류, 키 설정 함수
+    const handleItemSelection=(action,key)=>{
+        setAction(action);
+        setSelItemKey(key);
+    }
 
     return(
         <div className="app">
@@ -67,9 +83,10 @@ const App = ()=>{
             </ul>
             
             {/*값이 다르게 들어갈땐 삼항연산자 사용*/}
-            <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} setStuDetails={setStuDetails} />
+            <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} setStuDetails={setStuDetails} handleItemSelection={handleItemSelection} />
             </div>
-            <EnrolList stuDetails={stuDetails} setStuDetails={setStuDetails} />
+            <EnrolList stuDetails={stuDetails} setStuDetails={setStuDetails}
+            action={action} selItemKey={selItemKey}  />
         </div>
     );
 }

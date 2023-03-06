@@ -41,6 +41,18 @@ const EnrolList = (props) => {
             items= [...items,props.stuDetails];
             props.setStuDetails({});
         }
+
+        //삭제 기능 수행
+        if(props.action === 'delete'){
+           //삭제 대상 아이템을 키로 가져옴
+            const deleteItem = items.filter(
+                (item) => item.key === props.selItemKey
+            )[0];
+
+            //삭제대상 아이템을 제외하고 다시 items 객체 생성
+            items= items.filter(f=>f!==deleteItem);
+
+        }
     },[props])
     return (
             <div className="enrolList">
