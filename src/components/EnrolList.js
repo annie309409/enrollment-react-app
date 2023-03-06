@@ -51,7 +51,12 @@ const EnrolList = (props) => {
             //참가가능 인원수 복구
             props.restore(deleteItem.program);
         }
-        //??
+
+
+        //?? (confirm에서 취소하기 누르고 등록시 발생이슈 추가)
+
+
+
         //등록하기와 수정하기를 구분하는 조건 추가
         //새로 등록된 데이터를 리스트에 추가
         const curItemKey =  props.stuDetails.key;
