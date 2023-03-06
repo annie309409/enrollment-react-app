@@ -4,18 +4,23 @@ import {DetailsList} from '@fluentui/react/lib/DetailsList';
 
 // 컬럼 정의시 사용했던 fieldName 사용
 //이름 , 성, 과정, 이메일
-const colums = [{
-    key:'fname', name:'Firstname', fieldName:'fname', minWidth:90, isResizable:false
+// 현재컬럼 앞 뒤로 수정/삭제버튼 추가
+const colums = [
+    {key: 'edit', name:'수정', fieldName: "edit", maxWidth: 50, resizableColumns:false},
+    {
+    key:'fname', name:'Firstname', fieldName:'fname', maxWidth:20, resizableColumns:false
     },
     {
-        key:'lname', name:'Lastname', fieldName:'lname', minWidth:90, isResizable:false
+        key:'lname', name:'Lastname', fieldName:'lname', maxWidth:90, resizableColumns:false
     },
     {
-        key:'program', name:'과정종류', fieldName:'program', minWidth:90, isResizable:false
+        key:'program', name:'과정종류', fieldName:'program', maxWidth:90, resizableColumns:false
     },
     {
-        key:'email', name:'eamil', fieldName:'eamil', minWidth:90, isResizable:false
-    }];
+        key:'email', name:'eamil', fieldName:'eamil', maxWidth:150, resizableColumns:false
+    },
+    {key: 'delete', name:'삭제', fieldName: "delete", maxWidth: 50, resizableColumns:false}
+    ];
 
 let items =[];
 //

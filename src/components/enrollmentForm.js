@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import {useState} from "react";
+import {MdEdit,MdDelete} from 'react-icons/md';
 
 const EnrollmentForm = (props)=>{
 
@@ -30,7 +31,9 @@ const EnrollmentForm = (props)=>{
             const rndKey = Math.floor(1000+Math.random()*9000);
             //생성한 key와 등록완료된 학생정보를 props에 저장
             let stud = {
-                key:rndKey, fname:firstName, lname:lastName, program:props.chosenProgram, email:email
+                key:rndKey, fname:firstName, lname:lastName, program:props.chosenProgram, email:email,
+                edit:<MdEdit className="actionIcon" />,
+                delete:<MdDelete className="actionIcon" />
             };
             props.setStuDetails(stud);
         }
@@ -67,7 +70,6 @@ const EnrollmentForm = (props)=>{
                 </form>
             </div>
         </div>
-        
     );
 }
 
