@@ -52,6 +52,8 @@ const EnrolList = (props) => {
             //삭제대상 아이템을 제외하고 다시 items 객체 생성
             items= items.filter(f=>f!==deleteItem);
 
+            //참가가능 인원수 복구
+            props.restore(deleteItem.program);
         }
     },[props])
     return (

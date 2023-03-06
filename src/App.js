@@ -21,6 +21,7 @@ const App = ()=>{
     const [selItemKey,setSelItemKey] = useState();
 
 
+
     const handleChange = (e) => {
         setProgram(e.target.value);
         setPrgname(e.target.nextSibling.innerHTML);
@@ -48,6 +49,12 @@ const App = ()=>{
     const handleItemSelection=(action,key)=>{
         setAction(action);
         setSelItemKey(key);
+    }
+
+    //등록 학생 삭제시 남은 자리 복원
+    const restore=(pgm)=>{
+        pgm === '학사과정' ? setUsSeat(usSeat+1): setPgSeat(pgSeat+1);
+        setAction('');
     }
 
     return(
@@ -86,7 +93,7 @@ const App = ()=>{
             <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} setStuDetails={setStuDetails} handleItemSelection={handleItemSelection} />
             </div>
             <EnrolList stuDetails={stuDetails} setStuDetails={setStuDetails}
-            action={action} selItemKey={selItemKey}  />
+            action={action} selItemKey={selItemKey} restore={restore} />
         </div>
     );
 }

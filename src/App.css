@@ -68,16 +68,20 @@
     list-style-type: none;
     padding: 0;
 }
-#btnEnrol {
+button {
     border: 1px solid ;
     background: rgb(50, 58, 59);
     font-size: 18px;
     color: white;
-    margin-top: 20px;
     padding: 10px 50px;
     cursor: pointer;
     transition: 0.4s;
-    margin-bottom: 30px;
+    margin:20px 5px 30px;
+}
+
+#btnCancel{
+    color: #333;
+    background-color: #ccc;
 }
 ::placeholder {
     color: rgba(83, 70, 70, 0.596);
