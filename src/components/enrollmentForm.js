@@ -21,9 +21,7 @@ const EnrollmentForm = (props)=>{
 
     const handleEdit=(key)=>{
         //수정 할 학생정보 폼에 표시
-        setFirstName(firstName);
-        setLastName(lastName);
-        setEmail(email);
+        handleFormInput(firstName,lastName,email);
 
        setStudKey(key);
        setBtnValue('수정하기');
@@ -31,9 +29,7 @@ const EnrollmentForm = (props)=>{
 
     //폼에 입력된 데이터 제거, 버튼의 글자바꿈
     const HandleCancel=(e)=>{
-        setFirstName('');
-        setLastName('');
-        setEmail('');
+        handleFormInput('','','');
         e.preventDefault();
         setBtnValue('등록하기');
     }
@@ -74,6 +70,11 @@ const EnrollmentForm = (props)=>{
         setInput(e.target.value);
     };
 
+    const handleFormInput=(fname,lanme,email)=>{
+        setFirstName(fname);
+        setLastName(lanme);
+        setEmail(email);
+    };
 
     return(
         <div>
@@ -93,7 +94,7 @@ const EnrollmentForm = (props)=>{
                             <input type="email" id="Email" name="email" className="inputFields" placeholder="email addr"  value={email} onChange={e=>handleInputChage(setEmail,e)}/>
                         </li>
                         <li id="center-btn">
-                            <button type="submit" id="btnEnrol" name="enrol" onClick={HandleSubmit}>{btnValue}</button>
+                            <button type="submit" id="btnEnrol" name="enrol" onClick={(btnValue==='등록하기')?HandleSubmit:false}>{btnValue}</button>
                             <button type="submit" id="btnCancel" name="cancel" onClick={(e)=>{HandleCancel(e)}}>취소하기</button>
                         </li>
                         <li>

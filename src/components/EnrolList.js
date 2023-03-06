@@ -36,15 +36,11 @@ const EnrolList = (props) => {
     // useEffect: 컴포넌트
     // props 객체에 값이 존재할때 마다 detailList에 렌더링해서 화면에 표시
     useEffect(()=>{
-        const curItemKey =  props.stuDetails.key;
-        if(curItemKey) {
-            items= [...items,props.stuDetails];
-            props.setStuDetails({});
-        }
 
         //삭제 기능 수행
-        if(props.action === 'delete'){
-           //삭제 대상 아이템을 키로 가져옴
+        //eslint-disable-next-line no-restricted-globals
+        if(props.action === 'delete' && confirm('정말로 지울꺼에요 ? 😥')){
+            //삭제 대상 아이템을 키로 가져옴
             const deleteItem = items.filter(
                 (item) => item.key === props.selItemKey
             )[0];
@@ -55,7 +51,26 @@ const EnrolList = (props) => {
             //참가가능 인원수 복구
             props.restore(deleteItem.program);
         }
-    },[props])
+        //??
+        //등록하기와 수정하기를 구분하는 조건 추가
+        //새로 등록된 데이터를 리스트에 추가
+        const curItemKey =  props.stuDetails.key;
+        if(curItemKey) {
+            //전달받은 키와 리스트에서 (수정하려는) 키와 일치하는 항목의 인덱스를 찾음
+            const i = items.findIndex((item)=> item.key === curItemKey);
+            if(i>-1){
+                //키와 일치하는 항목이 리스트에 존재한다면, 수정하기로 간주하여 수정작업 수행
+                items = items.map(e=>e.key === curItemKey ? props.stuDetails : e);
+
+            }else{
+                //키와 일치하는 항목이 리스트에 존재하지 않으면, 등록하기로 간주하여 등록작업 수행
+                items= [...items,props.stuDetails];
+            }
+
+            props.setStuDetails({});
+
+        }
+    })
     return (
             <div className="enrolList">
                 <DetailsList items={items} colums={colums} />
