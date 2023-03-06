@@ -55,6 +55,7 @@ const App = ()=>{
     const restore=(pgm)=>{
         pgm === '학사과정' ? setUsSeat(usSeat+1): setPgSeat(pgSeat+1);
         setAction('');
+
     }
 
     return(
