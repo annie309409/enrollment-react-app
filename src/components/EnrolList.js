@@ -38,6 +38,7 @@ const EnrolList = (props) => {
     useEffect(()=>{
 
         //삭제 기능 수행
+        //아래의 주석은 스트릭트를 없애줌
         //eslint-disable-next-line no-restricted-globals
         if(props.action === 'delete' && confirm('정말로 지울꺼에요 ? 😥')){
             //삭제 대상 아이템을 키로 가져옴
@@ -50,6 +51,9 @@ const EnrolList = (props) => {
 
             //참가가능 인원수 복구
             props.restore(deleteItem.program);
+        }else{
+            // confirm에서 취소를 클릭한 경우 액션 초기화
+            props.setAction('');
         }
 
 

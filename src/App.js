@@ -55,7 +55,6 @@ const App = ()=>{
     const restore=(pgm)=>{
         pgm === '학사과정' ? setUsSeat(usSeat+1): setPgSeat(pgSeat+1);
         setAction('');
-
     }
 
     return(
@@ -91,10 +90,10 @@ const App = ()=>{
             </ul>
             
             {/*값이 다르게 들어갈땐 삼항연산자 사용*/}
-            <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} setStuDetails={setStuDetails} handleItemSelection={handleItemSelection} />
+            <EnrollmentForm chosenProgram={prgname} setUpdateSeats={setUpdateSeats} currentSeat ={(program ==='PG')?pgSeat:usSeat} setStuDetails={setStuDetails} handleItemSelection={handleItemSelection}/>
             </div>
             <EnrolList stuDetails={stuDetails} setStuDetails={setStuDetails}
-            action={action} selItemKey={selItemKey} restore={restore} />
+            action={action} selItemKey={selItemKey} restore={restore} setAction={setAction} />
         </div>
     );
 }
